@@ -70,7 +70,7 @@ for file_or_dir in ../*; do
 done
 
 # avoid recursive copy error by cookiecutter
-rm '{{cookiecutter.repository_name}}'
+rm '{% raw %}{{cookiecutter.repository_name}}{% endraw %}'
 ```
 {%- endif %}
 
