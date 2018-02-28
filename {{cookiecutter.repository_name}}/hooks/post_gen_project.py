@@ -16,7 +16,8 @@ def get_context():
 
 TRUE_VALUES = (True, 'true', 'yes', '1', 1)
 CONTEXT = get_context()
-META = CONTEXT['cookiecutter'].get('_meta', False)
+META = CONTEXT['cookiecutter'].get('_meta', False) in TRUE_VALUES
+TEMPLATE_DIR = '{% raw %}{{cookiecutter.repository_name}}{% endraw %}'
 
 
 def render_license():
@@ -34,15 +35,13 @@ def render_license():
 
 def do_meta_generation():
     """Make a copy of the template directory inside itself."""
-    dir_name = '{% raw %}{{cookiecutter.repository_name}}{% endraw %}'
-    shutil.copytree(dir_name, os.path.join(dir_name, dir_name))
+    shutil.copytree(TEMPLATE_DIR, os.path.join(TEMPLATE_DIR, TEMPLATE_DIR))
 
 
 def remove_meta_content():
-    """Remove hooks and licenses directories as well as cookiecutter.json."""
-    shutil.rmtree('hooks')
-    shutil.rmtree('licenses')
-    os.remove('cookiecutter.json')
+    """Remove hooks directory as well as cookiecutter.json."""
+    shutil.rmtree(os.path.join(TEMPLATE_DIR, 'hooks'))
+    os.remove(os.path.join(TEMPLATE_DIR, 'cookiecutter.json'))
 
 
 def print_context():
@@ -57,7 +56,7 @@ def print_context():
     """)
 
 
-if META in TRUE_VALUES:
+if META:
     do_meta_generation()
 else:
     remove_meta_content()
