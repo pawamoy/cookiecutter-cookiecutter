@@ -38,6 +38,13 @@ def do_meta_generation():
     shutil.copytree(dir_name, os.path.join(dir_name, dir_name))
 
 
+def remove_meta_content():
+    """Remove hooks and licenses directories as well as cookiecutter.json."""
+    shutil.rmtree('hooks')
+    shutil.rmtree('licenses')
+    os.remove('cookiecutter.json')
+
+
 def print_context():
     """Simply print the context in a pretty manner."""
     print("""
@@ -52,6 +59,8 @@ def print_context():
 
 if META in TRUE_VALUES:
     do_meta_generation()
+else:
+    remove_meta_content()
 
 render_license()
 print_context()
