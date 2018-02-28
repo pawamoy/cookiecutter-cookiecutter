@@ -31,6 +31,7 @@ def render_license():
     rendered = template.render(CONTEXT)
     with open(target_file, 'w') as write_stream:
         write_stream.write(rendered)
+    shutil.rmtree('licenses')
 
 
 def do_meta_generation():
@@ -40,8 +41,11 @@ def do_meta_generation():
 
 def remove_meta_content():
     """Remove hooks directory as well as cookiecutter.json."""
-    shutil.rmtree(os.path.join(TEMPLATE_DIR, 'hooks'))
-    os.remove(os.path.join(TEMPLATE_DIR, 'cookiecutter.json'))
+    try:
+        shutil.rmtree(os.path.join(TEMPLATE_DIR, 'hooks'))
+        os.remove(os.path.join(TEMPLATE_DIR, 'cookiecutter.json'))
+    except FileNotFoundError:
+        pass
 
 
 def print_context():

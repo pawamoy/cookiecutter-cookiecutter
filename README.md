@@ -14,8 +14,8 @@ The cookiecutter that generated itself.
 - [Credits](#credits)
 
 ## Features
-- all licenses from [choosealicense.com](https://choosealicense.com/appendix/).
-- standard fields that every open source project uses:
+- All licenses from [choosealicense.com](https://choosealicense.com/appendix/)
+- Standard fields that every open source project uses:
   - project name
   - project description
   - author full name
@@ -31,7 +31,7 @@ The cookiecutter that generated itself.
   - copyright holder email
   - copyright date
   - copyright license
-- only essential files:
+- Only essential files:
   - changelog
   - code of conduct
   - contributing
@@ -70,6 +70,11 @@ done
 # avoid recursive copy error by cookiecutter
 rm '{{cookiecutter.repository_name}}'
 ```
+
+Once your cookiecutter is generated, you should of course update the README
+and cookiecutter parameters (in `cookiecutter.json`) accordingly, as well as
+add, delete or modify contents in the `{{cookiecutter.repository_name}}`
+directory.
 
 ## Credits
 This cookiecutter was created with [cookiecutter-cookiecutter](https://github.com/Pawamoy/cookiecutter-cookiecutter).
