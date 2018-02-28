@@ -66,6 +66,9 @@ rm -rf *
 for file_or_dir in ../*; do
   ln "${file_or_dir}" . 2>/dev/null || ln -s "${file_or_dir}" .
 done
+
+# avoid recursive copy error by cookiecutter
+rm '{{cookiecutter.repository_name}}'
 ```
 
 ## Credits
