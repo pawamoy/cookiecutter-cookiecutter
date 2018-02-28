@@ -10,10 +10,6 @@
   "repository_namespace": "{{ cookiecutter.author_username }}",
   "repository_name": "{{ cookiecutter.project_name.lower().replace('_', '-').replace(' ', '-') }}",
 
-  "package_use_name": "{{ cookiecutter.project_name.lower().replace('-', '_').replace(' ', '_') }}",
-  "package_installation_name": "{{ cookiecutter.repository_name }}",
-  "package_cli_name": "{{ cookiecutter.repository_name }}",
-
   "copyright_holder": "{{ cookiecutter.author_fullname }}",
   "copyright_holder_email": "{{ cookiecutter.author_email }}",
   "copyright_date": "{% now 'utc', '%Y' %}",

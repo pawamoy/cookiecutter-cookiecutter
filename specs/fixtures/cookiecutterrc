@@ -1,0 +1,5 @@
+default_context:
+    author_fullname: "John Doe"
+    author_email: "jd@example.com"
+    author_username: "johndoe"
+    copyright_license: "ISC License"
