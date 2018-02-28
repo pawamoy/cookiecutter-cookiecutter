@@ -58,7 +58,5 @@
     "licenses",
     "hooks",
     "{{cookiecutter.repository_name}}"
-  ],
-
-  "_meta": false
+  ]
 }

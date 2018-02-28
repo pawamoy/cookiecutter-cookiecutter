@@ -14,38 +14,37 @@ def get_context():
     return context
 
 
-TRUE_VALUES = (True, 'true', 'yes', '1', 1)
-CONTEXT = get_context()
-META = CONTEXT['cookiecutter'].get('_meta', False) in TRUE_VALUES
-TEMPLATE_DIR = '{% raw %}{{cookiecutter.repository_name}}{% endraw %}'
+def render_template(source, target):
+    """Utility function to render a source template in a target file."""
+    env = Environment(loader=FileSystemLoader('.'), keep_trailing_newline=True)
+    template = env.get_template(source)
+    context = get_context()
+    rendered = template.render(context)
+    with open(target, 'w') as stream:
+        stream.write(rendered)
 
 
 def render_license():
     """Render the selected license in the LICENSE file."""
-    target_file = 'LICENSE'
-    source_template = '{{ cookiecutter.copyright_license }}'.replace(
-        '"', '').replace("'", '').replace('/', '-').replace(' ', '_')
-    env = Environment(loader=FileSystemLoader('licenses'),
-                      keep_trailing_newline=True)
-    template = env.get_template(source_template)
-    rendered = template.render(CONTEXT)
-    with open(target_file, 'w') as write_stream:
-        write_stream.write(rendered)
+    target = 'LICENSE'
+    source = os.path.join(
+        'licenses',
+        '{{ cookiecutter.copyright_license }}'
+            .replace('"', '')
+            .replace("'", '')
+            .replace('/', '-')
+            .replace(' ', '_'))
+
+    render_template(source, target)
     shutil.rmtree('licenses')
 
 
-def do_meta_generation():
-    """Make a copy of the template directory inside itself."""
-    shutil.copytree(TEMPLATE_DIR, os.path.join(TEMPLATE_DIR, TEMPLATE_DIR))
-
-
-def remove_meta_content():
-    """Remove hooks directory as well as cookiecutter.json."""
-    try:
-        shutil.rmtree(os.path.join(TEMPLATE_DIR, 'hooks'))
-        os.remove(os.path.join(TEMPLATE_DIR, 'cookiecutter.json'))
-    except FileNotFoundError:
-        pass
+def render_subreadme():
+    """Run a rendering pass on the sub-README to include credits."""
+    template_dir = '{% raw %}{{cookiecutter.repository_name}}{% endraw %}'
+    source = os.path.join(template_dir, 'README.md')
+    target = source
+    render_template(source, target)
 
 
 def print_context():
@@ -60,10 +59,6 @@ def print_context():
     """)
 
 
-if META:
-    do_meta_generation()
-else:
-    remove_meta_content()
-
 render_license()
+render_subreadme()
 print_context()
