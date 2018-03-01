@@ -5,4 +5,4 @@ python:
   - "3.6"
 install:
   - "pip install tox"
-script: mamba
+script: tox -e py
