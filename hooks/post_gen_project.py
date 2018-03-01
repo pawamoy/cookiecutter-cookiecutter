@@ -47,18 +47,5 @@ def render_subreadme():
     render_template(source, target)
 
 
-def print_context():
-    """Simply print the context in a pretty manner."""
-    print("""
-    You have succesfully created `{{ cookiecutter.repository_name }}`
-    with these cookiecutter parameters:
-
-    {% for key, value in cookiecutter.items()|sort %}
-      {{ "{0:28}".format(key + ":") }} {{ "{0!r}".format(value).strip("u") }}
-    {%- endfor %}
-    """)
-
-
 render_license()
 render_subreadme()
-print_context()
