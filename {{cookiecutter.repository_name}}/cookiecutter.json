@@ -8,7 +8,7 @@
 
   "repository_provider": ["github.com", "gitlab.com", "bitbucket.org"],
   "repository_namespace": "{{ cookiecutter.author_username }}",
-  "repository_name": "{{ cookiecutter.project_name.lower().replace('_', '-').replace(' ', '-') }}",
+  "repository_name": "{{ cookiecutter.project_name|lower|replace('_', '-')|replace(' ', '-') }}",
 
   "copyright_holder": "{{ cookiecutter.author_fullname }}",
   "copyright_holder_email": "{{ cookiecutter.author_email }}",
@@ -47,9 +47,5 @@
     "PostgreSQL License",
     "The Unlicense",
     "zlib License"
-  ],
-
-  "_copy_without_render": [
-    "licenses",
   ]
 }

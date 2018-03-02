@@ -85,7 +85,7 @@ with description('Cookiecutter Template'):
             expect(os.path.exists(expected)).to(be_true)
 
         with it('creates the main cookiecutter.json file without rendering'):
-            expected = "\"repository_name\": \"{{ cookiecutter.project_name.lower().replace('_', '-').replace(' ', '-') }}\","
+            expected = "\"repository_name\": \"{{ cookiecutter.project_name|lower|replace('_', '-')|replace(' ', '-') }}\","
             self.runner.run()
             f = open(self.project_dir + '/cookiecutter.json', 'r')
 
