@@ -27,4 +27,4 @@ cookiecutter {% if cookiecutter.repository_provider == 'github.com' %}gh:{% elif
 ```
 
 ## Credits
-This cookiecutter was created with [cookiecutter-cookiecutter](https://github.com/Pawamoy/cookiecutter-cookiecutter).
+This cookiecutter was created with [cookiecutter-cookiecutter](https://github.com/pawamoy/cookiecutter-cookiecutter).

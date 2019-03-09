@@ -44,8 +44,8 @@ The cookiecutter that generated itself.
 
 ## Usage
 ```shell-session
-cookiecutter gh:Pawamoy/cookiecutter-cookiecutter
+cookiecutter gh:pawamoy/cookiecutter-cookiecutter
 ```
 
 ## Credits
-This cookiecutter was created with [cookiecutter-cookiecutter](https://github.com/Pawamoy/cookiecutter-cookiecutter).
+This cookiecutter was created with [cookiecutter-cookiecutter](https://github.com/pawamoy/cookiecutter-cookiecutter).
